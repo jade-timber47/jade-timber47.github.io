@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人人影视-影视资源站_字幕组作品_美剧日剧资源</title>
+<meta name="description" content="人人影视是中文互联网上知名的影视资源与字幕作品分享站点，汇集海量美剧、日剧、韩剧与经典电影，提供字幕组译制作品浏览、资源分类查找与下载入口，帮助影迷快速找到想看的内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23131a2b'/%3E%3Cpath d='M20 18h24v6H26v6h16v6H26v6h18v6H20z' fill='%23ffcf4d'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0e1320;
+  --panel:#161d2f;
+  --panel2:#1d2740;
+  --line:#2a3450;
+  --txt:#e8ecf6;
+  --muted:#9aa6c2;
+  --acc:#ffcf4d;
+  --acc2:#4da3ff;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1140px,92vw);margin:0 auto}
+
+/* header */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(14,19,32,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;gap:28px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;white-space:nowrap}
+.logo .mark{width:34px;height:34px;flex:0 0 auto}
+.logo span{color:var(--txt)}
+nav.main{display:flex;gap:22px;margin-left:auto;font-size:15px}
+nav.main a{color:var(--muted);padding:6px 2px;border-bottom:2px solid transparent;transition:.2s}
+nav.main a:hover{color:var(--acc);border-bottom-color:var(--acc)}
+.nav-cta{
+  background:var(--acc);color:#1a1200;font-weight:700;
+  padding:8px 16px;border-radius:9px;font-size:14px;white-space:nowrap;
+  transition:.2s;
+}
+.nav-cta:hover{filter:brightness(1.08)}
+
+/* hero */
+.hero{padding:56px 0 44px;position:relative;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;right:-160px;top:-120px;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(77,163,255,.18),transparent 68%);
+  pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--acc);
+  border:1px solid rgba(255,207,77,.35);background:rgba(255,207,77,.07);
+  padding:4px 12px;border-radius:99px;margin-bottom:18px;
+}
+.tag i{width:6px;height:6px;border-radius:50%;background:var(--acc);display:block}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.22;font-weight:800;letter-spacing:.5px}
+h1 em{font-style:normal;color:var(--acc)}
+.hero p.lead{color:var(--muted);margin-top:18px;font-size:16.5px;max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;
+  font-weight:700;font-size:15px;transition:.2s;
+}
+.btn-primary{background:var(--acc);color:#1a1200}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border:1px solid var(--line);color:var(--txt);background:var(--panel)}
+.btn-ghost:hover{border-color:var(--acc2);color:var(--acc2)}
+.btn-dl[aria-disabled="true"]{opacity:.55;cursor:not-allowed;pointer-events:none}
+.hero-stats{display:flex;gap:30px;margin-top:34px;flex-wrap:wrap}
+.hero-stats div b{display:block;font-size:22px;color:var(--acc);font-weight:800}
+.hero-stats div small{color:var(--muted);font-size:13px}
+
+/* hero art card */
+.art-card{
+  background:linear-gradient(160deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);border-radius:20px;padding:22px;
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.8);
+}
+.art-card h3{font-size:15px;color:var(--muted);font-weight:600;margin-bottom:14px;display:flex;justify-content:space-between}
+.art-card h3 span{color:var(--acc2);font-size:12.5px}
+.reel{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.reel .cell{
+  aspect-ratio:3/4;border-radius:9px;overflow:hidden;position:relative;
+  background:var(--bg);border:1px solid var(--line);
+}
+.reel .cell svg{width:100%;height:100%}
+.reel .cell::before{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.65));
+}
+.reel .cell b{
+  position:absolute;left:6px;right:6px;bottom:5px;font-size:10.5px;color:#dfe6f5;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:2;
+}
+
+/* section base */
+section{padding:44px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
+.sec-head h2{font-size:25px;font-weight:800;letter-spacing:.4px}
+.sec-head h2 small{display:block;font-size:13.5px;color:var(--muted);font-weight:500;margin-top:6px;letter-spacing:0}
+.sec-head .more{font-size:14px;color:var(--acc2);white-space:nowrap}
+.sec-head .more:hover{text-decoration:underline}
+
+/* search / filter */
+.filterbar{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:26px;
+}
+.filterbar input[type="search"]{
+  flex:1 1 240px;min-width:0;background:var(--bg);border:1px solid var(--line);
+  border-radius:9px;padding:10px 14px;color:var(--txt);font-size:15px;outline:none;
+}
+.filterbar input[type="search"]:focus{border-color:var(--acc2)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  border:1px solid var(--line);background:var(--bg);color:var(--muted);
+  padding:7px 15px;border-radius:99px;font-size:13.5px;cursor:pointer;transition:.2s;
+}
+.chip:hover{color:var(--txt);border-color:var(--acc2)}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#1a1200;font-weight:700}
+
+/* resource grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:10px;transition:.22s;
+}
+.card:hover{border-color:var(--acc2);transform:translateY(-3px)}
+.card .top{display:flex;align-items:center;gap:10px}
+.card .ic{
+  width:38px;height:38px;border-radius:10px;flex:0 0 auto;
+  background:rgba(77,163,255,.12);display:grid;place-items:center;
+}
+.card .ic svg{width:20px;height:20px}
+.card h3{font-size:16.5px;font-weight:700}
+.card p{font-size:14px;color:var(--muted);flex:1}
+.card .meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.card .meta span{background:var(--bg);padding:2px 9px;border-radius:6px;border:1px solid var(--line)}
+.card .go{font-size:13.5px;color:var(--acc);font-weight:700}
+.card .go:hover{text-decoration:underline}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:34px 0;font-size:14.5px}
+
+/* feature / split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+}
+.panel h3{font-size:19px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.panel h3 svg{width:20px;height:20px}
+.panel p{font-size:14.8px;color:var(--muted);margin-bottom:12px}
+.panel ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:4px}
+.panel li{font-size:14.5px;color:var(--txt);display:flex;gap:10px;align-items:flex-start}
+.panel li::before{content:"›";color:var(--acc);font-weight:800;line-height:1.4}
+.panel li span{color:var(--muted)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+.step b.num{
+  font-size:34px;font-weight:800;color:rgba(255,207,77,.22);line-height:1;display:block;margin-bottom:10px;
+}
+.step h3{font-size:16.5px;margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* about text */
+.about{max-width:70ch}
+.about p{color:var(--muted);margin-bottom:14px;font-size:15px}
+.about p strong{color:var(--txt);font-weight:700}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 0 40px;margin-top:20px;background:#0b101a}
+.foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot-brand{max-width:340px}
+.foot-brand .logo{margin-bottom:12px}
+.foot-brand p{font-size:13.5px;color:var(--muted)}
+.foot-links{display:flex;gap:56px;flex-wrap:wrap;font-size:13.8px}
+.foot-links h4{font-size:13px;color:var(--txt);margin-bottom:10px;letter-spacing:.5px}
+.foot-links a{display:block;color:var(--muted);margin-bottom:7px}
+.foot-links a:hover{color:var(--acc)}
+.copy{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-size:12.8px;color:#6c789a;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .nav-inner{height:auto;padding:12px 0;flex-wrap:wrap;gap:12px}
+  nav.main{order:3;width:100%;margin-left:0;gap:16px;overflow-x:auto;font-size:14px;padding-bottom:2px}
+  .nav-cta{margin-left:auto}
+  .grid{grid-template-columns:1fr}
+  .hero{padding:38px 0 30px}
+  .hero-stats{gap:22px}
+  .foot-links{gap:34px}
+  section{padding:34px 0}
+  .reel{grid-template-columns:repeat(4,1fr);gap:8px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top" aria-label="人人影视首页">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1d2740"/>
+        <path d="M20 18h24v6H26v6h16v6H26v6h18v6H20z" fill="#ffcf4d"/>
+      </svg>
+      <span>人人影视</span>
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#resources">资源库</a>
+      <a href="#subs">字幕作品</a>
+      <a href="#howto">查找方式</a>
+      <a href="#about">关于本站</a>
+    </nav>
+    <a class="nav-cta" href="#resources">进入资源库</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag"><i></i>影视资源与字幕作品聚合</span>
+        <h1>人人影视</h1>
+        <p class="lead">人人影视聚焦美剧、日剧、韩剧与经典电影的字幕译制作品，把剧集条目、版本信息与下载入口集中在一处。想找一部剧的熟肉资源，从分类或搜索进入，几步就能定位到对应条目。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#resources">浏览资源条目</a>
+          <a class="btn btn-ghost" href="#subs">查看字幕作品</a>
+          <a class="btn btn-ghost btn-dl" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>4</b><small>内容大类</small></div>
+          <div><b>双语</b><small>中英字幕对照</small></div>
+          <div><b>多版本</b><small>标清 / 高清</small></div>
+        </div>
+      </div>
+      <aside class="art-card" aria-label="热门条目示意">
+        <h3>热门条目 <span>按更新排序</span></h3>
+        <div class="reel">
+          <div class="cell">
+            <svg viewBox="0 0 60 80" aria-hidden="true"><rect width="60" height="80" fill="#22304d"/><circle cx="30" cy="30" r="12" fill="#ffcf4d" opacity=".7"/><rect x="12" y="52" width="36" height="4" rx="2" fill="#4da3ff" opacity=".6"/></svg>
+            <b>美剧 · 剧情</b>
+          </div>
+          <div class="cell">
+            <svg viewBox="0 0 60 80" aria-hidden="true"><rect width="60" height="80" fill="#1f2b45"/><path d="M14 20h32v8H22v8h20v8H22v8h24v8H14z" fill="#4da3ff" opacity=".55"/></svg>
+            <b>日剧 · 悬疑</b>
+          </div>
+          <div class="cell">
+            <svg viewBox="0 0 60 80" aria-hidden="true"><rect width="60" height="80" fill="#243252"/><circle cx="30" cy="34" r="16" fill="none" stroke="#ffcf4d" stroke-width="3" opacity=".7"/><rect x="18" y="58" width="24" height="4" rx="2" fill="#9aa6c2" opacity=".6"/></svg>
+            <b>韩剧 · 爱情</b>
+          </div>
+          <div class="cell">
+            <svg viewBox="0 0 60 80" aria-hidden="true"><rect width="60" height="80" fill="#1c2740"/><rect x="14" y="22" width="32" height="20" rx="3" fill="#ffcf4d" opacity=".5"/><rect x="14" y="48" width="32" height="4" rx="2" fill="#4da3ff" opacity=".6"/><rect x="14" y="56" width="22" height="4" rx="2" fill="#9aa6c2" opacity=".5"/></svg>
+            <b>电影 · 经典</b>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section id="resources">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>资源条目<small>按类型与关键词筛选，找到想看的那一部</small></h2>
+        <a class="more" href="#subs">字幕作品一览 →</a>
+      </div>
+
+      <div class="filterbar" role="search">
+        <input type="search" id="q" placeholder="搜索剧名、地区或类型，例如：美剧、悬疑" aria-label="搜索资源条目">
+        <div class="chips" id="chips">
+          <button class="chip on" data-cat="all" type="button">全部</button>
+          <button class="chip" data-cat="美剧" type="button">美剧</button>
+          <button class="chip" data-cat="日剧" type="button">日剧</button>
+          <button class="chip" data-cat="韩剧" type="button">韩剧</button>
+          <button class="chip" data-cat="电影" type="button">电影</button>
+        </div>
+      </div>
+
+      <div class="grid" id="grid">
+        <article class="card" data-cat="美剧" data-key="美剧 剧情 都市 双语字幕">
+          <div class="top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4da3ff" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h3>美剧剧集合集</h3>
+          </div>
+          <p>按季整理的都市与剧情类美剧条目，附中英双语字幕，标注清晰度与文件规格，方便按需选择。</p>
+          <div class="meta"><span>中英双语</span><span>多季</span><span>高清</span></div>
+          <a class="go" href="#subs">查看字幕作品 →</a>
+        </article>
+
+        <article class="card" data-cat="日剧" data-key="日剧 悬疑 推理 字幕">
+          <div class="top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ffcf4d" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></div>
+            <h3>日剧悬疑专题</h3>
+          </div>
+          <p>推理与悬疑向日剧集中归类，条目页保留原作名与译名对照，便于核对同一部剧的不同译法。</p>
+          <div class="meta"><span>日中对照</span><span>悬疑</span><span>单季</span></div>
+          <a class="go" href="#subs">查看字幕作品 →</a>
+        </article>
+
+        <article class="card" data-cat="韩剧" data-key="韩剧 爱情 家庭 字幕">
+          <div class="top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8fb1" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.6-7 9-7 9z"/></svg></div>
+            <h3>韩剧爱情与家庭</h3>
+          </div>
+          <p>汇集爱情、家庭题材韩剧条目，字幕以中韩对照为主，长剧集按集数分段标注，查找更直观。</p>
+          <div class="meta"><span>中韩对照</span><span>长剧</span><span>标清/高清</span></div>
+          <a class="go" href="#subs">查看字幕作品 →</a>
+        </article>
+
+        <article class="card" data-cat="电影" data-key="电影 经典 剧情 艺术 字幕">
+          <div class="top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#7ee0c3" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg></div>
+            <h3>经典电影译制</h3>
+          </div>
+          <p>收录影史经典与获奖影片的译制版本，保留原片名、年份与导演信息，方便按年份回溯。</p>
+          <div class="meta"><span>中英双语</span><span>影史经典</span><span>收藏向</span></div>
+          <a class="go" href="#subs">查看字幕作品 →</a>
+        </article>
+
+        <article class="card" data-cat="美剧" data-key="美剧 科幻 奇幻 字幕">
+          <div class="top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4da3ff" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(-25 12 12)"/></svg></div>
+            <h3>美剧科幻与奇幻</h3>
+          </div>
+          <p>科幻、奇幻类美剧条目专区，专有名词与设定术语在字幕中统一译法，减少观看时的理解偏差。</p>
+          <div class="meta"><span>术语统一</span><span>科幻</span><span>高清</span></div>
+          <a class="go" href="#subs">查看字幕作品 →</a>
+        </article>
+
+        <article class="card" data-cat="日剧" data-key="日剧 治愈 日常 生活 字幕">
+          <div class="top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ffcf4d" stroke-width="1.8" aria-hidden="true"><path d="M4 17c2-6 5-9 8-9s6 3 8 9"/><circle cx="12" cy="8" r="3"/></svg></div>
+            <h3>日剧生活治愈</h3>
+          </div>
+          <p>日常、治愈向日剧条目，语速与生活化台词较多，适合对照字幕练习听力与口语表达。</p>
+          <div class="meta"><span>日中对照</span><span>生活向</span><span>练习友好</span></div>
+          <a class="go" href="#subs">查看字幕作品 →</a>
+        </article>
+      </div>
+      <p class="empty" id="empty" hidden>没有匹配的条目，换一个关键词或切换分类试试。</p>
+    </div>
+  </section>
+
+  <!-- SUBS -->
+  <section id="subs">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>字幕作品<small>译制、校对与版本说明</small></h2>
+        <a class="more" href="#howto">如何查找 →</a>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="#ffcf4d" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>字幕从哪来</h3>
+          <p>人人影视的字幕作品以译制组人工翻译为主，覆盖对白、旁白与屏幕文字，非机翻直出。每条字幕在条目页标注语种组合与对应片源版本，避免字幕与片源时间轴错位。</p>
+          <ul>
+            <li>语种组合：中英、中日、中韩对照为主 <span>— 按条目实际标注为准</span></li>
+            <li>校对流程：初译后由校对复核人名、术语与长句</li>
+            <li>版本对应：同一剧集可能有多套字幕，需与片源匹配</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="#4da3ff" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>取用前请注意</h3>
+          <p>字幕文件与视频片源分开存放，下载后需要按播放器要求加载外挂字幕。若出现时间轴偏差，可先核对片源版本号，再调整字幕帧率或偏移量。</p>
+          <ul>
+            <li>优先选择与片源同版本的字幕文件</li>
+            <li>播放器需支持外挂字幕加载</li>
+            <li>字幕仅供个人学习与交流使用</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOWTO -->
+  <section id="howto">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>查找方式<small>三步定位想看的内容</small></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <b class="num">01</b>
+          <h3>选分类或直接搜索</h3>
+          <p>在资源库顶部选择美剧、日剧、韩剧或电影，也可以直接输入剧名关键词，列表会即时收窄到匹配条目。</p>
+        </div>
+        <div class="step">
+          <b class="num">02</b>
+          <h3>核对条目信息</h3>
+          <p>进入条目后先看年份、地区与季数，确认是同一部剧；再比对字幕语种与标注的片源版本，避免拿错文件。</p>
+        </div>
+        <div class="step">
+          <b class="num">03</b>
+          <h3>加载字幕观看</h3>
+          <p>把字幕文件与视频放在同一目录并同名，或通过播放器手动加载；发现时间轴偏移时按版本调整偏移量即可。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>关于本站<small>人人影视的定位与使用边界</small></h2>
+      </div>
+      <div class="about">
+        <p><strong>人人影视</strong>是面向华语影迷的影视资源与字幕作品聚合站点，核心价值在于把分散的剧集条目、字幕版本与下载入口整理成可检索的结构。相比零散分享，条目化的组织方式让同一部剧的不同季、不同字幕版本能被并排比较。</p>
+        <p>站内内容以美剧、日剧、韩剧与经典电影四条主线展开，每条主线再按题材细分。字幕是这里的重点：译制组完成初译后经过校对，术语与人物译名在同一部剧内保持一致，长剧集尤其需要这种统一，否则观众会在不同集数之间反复适应。</p>
+        <p>需要说明的是，本站整理的是资源信息与字幕作品，不提供在线播放，也不对片源版权作出任何主张。使用者应在符合当地法律法规的前提下取用，字幕作品仅供个人学习与语言交流参考。人人影视会持续补充条目与字幕版本，若发现信息有误，欢迎通过页尾反馈渠道告知。</p>
+        <p>对第一次访问的朋友，建议从资源库的搜索框开始，输入你记得的剧名或类型词，比逐层点开分类更快。熟悉之后，可以用分类筛选配合字幕语种标注，快速锁定需要的那一份文件。人人影视希望做的是省时间的入口，而不是让人反复试错。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top" aria-label="人人影视">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#1d2740"/>
+            <path d="M20 18h24v6H26v6h16v6H26v6h18v6H20z" fill="#ffcf4d"/>
+          </svg>
+          <span>人人影视</span>
+        </a>
+        <p>影视资源与字幕作品聚合站点，聚焦美剧、日剧、韩剧与经典电影的译制内容整理。</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>内容</h4>
+          <a href="#resources">资源条目</a>
+          <a href="#subs">字幕作品</a>
+          <a href="#howto">查找方式</a>
+        </div>
+        <div>
+          <h4>说明</h4>
+          <a href="#about">关于本站</a>
+          <a href="#about">使用边界</a>
+          <a href="#top">返回顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="copy">
+      <span>人人影视 · 字幕作品仅供个人学习与交流使用</span>
+      <span>内容以条目实际标注为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var chips = document.getElementById('chips');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#grid .card'));
+  var empty = document.getElementById('empty');
+  var cat = 'all';
+
+  function apply(){
+    var kw = (q.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var okCat = (cat === 'all') || (c.getAttribute('data-cat') === cat);
+      var text = (c.getAttribute('data-key') + ' ' + c.textContent).toLowerCase();
+      var okKw = !kw || text.indexOf(kw) > -1;
+      var show = okCat && okKw;
+      c.style.display = show ? '' : 'none';
+      if(show) shown++;
+    });
+    empty.hidden = shown !== 0;
+  }
+
+  if(chips){
+    chips.addEventListener('click', function(e){
+      var btn = e.target.closest('.chip');
+      if(!btn) return;
+      Array.prototype.forEach.call(chips.querySelectorAll('.chip'), function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      cat = btn.getAttribute('data-cat');
+      apply();
+    });
+  }
+  if(q){ q.addEventListener('input', apply); }
+})();
+</script>
+</body>
+</html>
